@@ -9,7 +9,7 @@
 ## ToDoList 만들기
 > MVC패턴   
 > (Model, View, Controller)   
-> <img src="https://hackernoon.com/drafts/126z19ld.png">   
+> <img src="https://hackernoon.com/drafts/126z19ld.png" />   
 >
 > CRUD   
 > (Create, Read, Update, Delete)   
