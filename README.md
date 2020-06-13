@@ -52,6 +52,6 @@
 - url에서 지정한 경로로 접근시 보여줄 페이지를 연결하는 기능
 - your_apps > views.py
 - from django.shortcuts import render
-- # Create your views here.
+- 
 - def index(request):
 -    return render(request, 'your.html')
