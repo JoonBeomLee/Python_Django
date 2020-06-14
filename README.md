@@ -129,3 +129,30 @@
 >>
 >> Model에 의해 생성된 테이블명은 규칙을 가진다.   
 >> 프로젝트명_모델명  ex) to_do_app_user 로 생성이 된다.   
+
+# 값 전달
+> POST | GET 방식   
+> ```
+> <form action="your_action_path" method="GET || POST"> {% csrf_token %}
+> <input id="your_id" name="your_name" type="text"/>
+> ```
+> Django에서는 기본적으로 CSRF토큰을 이용해 CSRF공격을 방지한다.   
+> CSRF란 Cross Site Request Forgery의 약자로 웹 어플리케이션의 취약점을 이용해   
+> 비정상적인 요청을 유발하는 공격방법이다. 이러한 공격예방을 Django에서는 기본 제공한다.    
+> * form사용시 작성하도록 한다.
+> 
+> form 작동시 action의 경로로 페이지는 method의 방식을 따라 값을 전달한다.    
+> 따라서 url과 view를 경로에 맞게 추가해준다.   
+> ```
+> urls.py
+> urlpatterns =[
+>    """"""
+>    path('your_path', views.your_page) # add url
+> ]
+>
+> views.py
+> def your_page(request):           # url에 추가해준 함수를 작성
+>    # POST | GET for에서 작성한 방식을 통해 값 참조 가능
+>    your_var = request.POST['your_name']   # 참조시 태그의 name을 사용한다.
+>    return render(request, 'your.html')
+> ```

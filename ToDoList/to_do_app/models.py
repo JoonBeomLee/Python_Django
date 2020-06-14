@@ -7,3 +7,6 @@ class user(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     phon_number = models.CharField(max_length=255)
+
+class to_do(models.Model):
+    content = models.CharField(max_length=255)
