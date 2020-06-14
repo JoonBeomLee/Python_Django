@@ -156,3 +156,19 @@
 >    your_var = request.POST['your_name']   # 참조시 태그의 name을 사용한다.
 >    return render(request, 'your.html')
 > ```
+
+# 값 저장
+> form에서 전달한 값을 받는법을 확인하였다.   
+> 그렇다면 확인한 값을 DB에 저장하는 방법은??   
+> 앞서 작성한 Model을 활용한다.   
+> ```
+> views.py
+> from . import models      # 작성한 Model을 참조하기 위한 import
+>
+> def yourPage(request):
+>    your_var = request.POST['your_name']
+>    # add
+>    new_Model = your_model(model_var=your_var) # 받은 값을 생성한 모델(class)에 전달
+>    new_Model.save()                           # 전달받은 모델을 save() 함수를 통해 DB에 저장
+>    return render(request, 'your.html')
+> ```
