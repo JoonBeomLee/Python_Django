@@ -7,7 +7,7 @@
     <body>
         <h1>Hello JoonB</h1>
         <div class="messageDiv">
-            <form action="createTo" method="POST">{% csrf_token %}
+            <form action="createToDo" method="POST">{% csrf_token %}
                 <input id="toDoContent" name="toDoContent" type="text" size="50" placeholder="메모할 내용을 적어주세요." />
                 <span class="linput-group-btn">
                     <button type="submit">메모하기!</button>

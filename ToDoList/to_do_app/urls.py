@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path, reverse
 from . import views
 
 urlpatterns =[
     path('', views.index, name='index'),
-    path('createToDo.html', views.createToDo, name='createToDo'),
+    path(r'createToDo', views.createToDo, name='createToDo'),
 ]

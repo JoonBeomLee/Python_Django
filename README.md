@@ -176,3 +176,20 @@
 
 # 값 출력
 > 템플릿 태그
+> Html을 통한 페이지 내용 작성시 각기 다른 값을 출력하기 위한 태그    
+> ```
+> {{ var_name }} # 변수 출력 
+> 
+> {% for for_var in for_vars %}         # for문 시작 태그
+>   <h1>반복할 태그 {{ var_name }}</h1>  # 태그 안에서 {{ }} 변수출력 가능
+> {% endfor %}                          # for문 종료 태그
+>
+> {% if your_condition1 %}              # if문 condition에 따른 if기능 수행
+>   <h1> 조건 True </h1>
+> {% elif your_condition2 %}
+>   <h1> 조건2 True </h1>
+> {% else %}
+>   <h1> 조건1,2 False </h1>
+> {% endif %}                           # if문 종료 태그
+> ```
+> 이 밖에도 다양한 커스텀 태그를 작성할 수 있다.   
