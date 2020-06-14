@@ -154,7 +154,8 @@
 > def your_page(request):           # url에 추가해준 함수를 작성
 >    # POST | GET for에서 작성한 방식을 통해 값 참조 가능
 >    your_var = request.POST['your_name']   # 참조시 태그의 name을 사용한다.
->    return render(request, 'your.html')
+>    context = {"your_var":your_var}        # dict형태로 참조할 id명과 변수를 쌍으로 전달 
+>    return render(request, 'your.html', context) # render시 이동할 템플릿과 함께 전달(your_var로 참조 가능)
 > ```
 
 # 값 저장
@@ -163,7 +164,7 @@
 > 앞서 작성한 Model을 활용한다.   
 > ```
 > views.py
-> from . import models      # 작성한 Model을 참조하기 위한 import
+> from .models import *      # 작성한 Model을 참조하기 위한 import
 >
 > def yourPage(request):
 >    your_var = request.POST['your_name']
@@ -172,3 +173,6 @@
 >    new_Model.save()                           # 전달받은 모델을 save() 함수를 통해 DB에 저장
 >    return render(request, 'your.html')
 > ```
+
+# 값 출력
+> 템플릿 태그
