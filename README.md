@@ -118,7 +118,7 @@
 >> models.BooleanField                 # true | false 를 저장하는 데이터타입
 >
 > 자세한 데이터 타입은 아래의 링크를 확인    
-> [참조문서]: (https://docs.djangoproject.com/en/3.0/ref/models/fields/, "django")
+> [참조문서]: ( https://docs.djangoproject.com/en/3.0/ref/models/fields/ )
 
 # DB
 > DB생성

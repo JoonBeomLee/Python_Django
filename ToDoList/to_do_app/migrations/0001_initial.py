@@ -18,14 +18,4 @@ class Migration(migrations.Migration):
                 ('content', models.CharField(max_length=255)),
             ],
         ),
-        migrations.CreateModel(
-            name='user',
-            fields=[
-                ('id', models.CharField(max_length=255, primary_key=True, serialize=False)),
-                ('pwd', models.CharField(max_length=255)),
-                ('name', models.CharField(max_length=255)),
-                ('email', models.CharField(max_length=255)),
-                ('phon_number', models.CharField(max_length=255)),
-            ],
-        ),
     ]

@@ -5,7 +5,40 @@
         <meta charset="utf-8"/>
     </head>
     <body>
-        <h1>Hello JoonB</h1>
+        <h1>Hello 
+            {% if not usr_id %} 
+                Guest 
+            {% else %} 
+                {{ usr_id }}
+            {% endif %}
+        </h1>
+        <button type="button" onclick="location.href='user_app/sign'">회원가입</button>
+
+        <div class=loginForm>
+            <form action="user_app/loginDo" method="POST">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>
+                            ID
+                        </td>
+                        <td>
+                            <input type="text" name="login_id" required/>
+                        </td>
+                        <td>
+                            PWD
+                        </td>
+                        <td>
+                            <input type="password" name="login_pwd" required />
+                        </td>
+                        <td>
+                            <button type="submit">로그인</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
         <div class="messageDiv">
             <form action="createToDo" method="POST">{% csrf_token %}
                 <input id="toDoContent" name="toDoContent" type="text" size="50" placeholder="메모할 내용을 적어주세요." />
