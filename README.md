@@ -117,8 +117,8 @@
 >> models.IntegerField()        # 숫자를 저장하는 타입. 유효범위 -2147483648 ~ 2147483647, 게시글의 조회수, 추천수 등을 저장하는데 활용.
 >> BooleanField                 # true | false 를 저장하는 데이터타입
 >
-> 자세한 데이터 타입은 아래의 링크를 확인
-> [참조문서]: https://docs.djangoproject.com/en/3.0/ref/models/fields/
+> 자세한 데이터 타입은 아래의 링크를 확인    
+> [참조문서]: (https://docs.djangoproject.com/en/3.0/ref/models/fields/, "django")
 
 # DB
 > DB생성
