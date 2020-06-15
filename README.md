@@ -115,7 +115,7 @@
 >> models.FileField()           # 파일을 저장할 수 있는 타입, 실질적으로 저장되는 값은 저장되는 파일의 이름이며, 해당 파일은 upload_to라는 옵션에 지정되는 위치에 저장.
 >> models.TextField()           # CharField와 비슷하게 문자열을 저장하는 데이터 타입, charField보다 더 글자수 제한이 더 크다. 많은 양의 텍스트 저장 가능.
 >> models.IntegerField()        # 숫자를 저장하는 타입. 유효범위 -2147483648 ~ 2147483647, 게시글의 조회수, 추천수 등을 저장하는데 활용.
->> BooleanField                 # true | false 를 저장하는 데이터타입
+>> models.BooleanField                 # true | false 를 저장하는 데이터타입
 >
 > 자세한 데이터 타입은 아래의 링크를 확인    
 > [참조문서]: (https://docs.djangoproject.com/en/3.0/ref/models/fields/, "django")
