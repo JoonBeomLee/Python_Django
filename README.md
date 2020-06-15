@@ -106,6 +106,19 @@
 >>     id = models.CharField(primary_key=True, max_length=255) // table의 데이터 타입에 맞게 작성
 >>    pwd = models.CharField(max_length=30)  // max_length는 255보다 작아야 한다.
 >>```
+>
+> 3. 자주사용되는 데이터 타입
+>> ```
+>> models.CharField()           # 문자열 정의, max_length를 통해 최대 길이 지정, 옵션값 없을 경우 Default로 None값을 받고 길이제한이 없게 됨.
+>> models.DateField()           # 날짜 양식에 맞게 저장되는 타입, python의 datetime라이브러리의 형태로 표현, 게시판 등록시간, 수정시간 등을 기록하는데 사용.
+>> models.EmailField()          # 이메일 형식을 가지는 타입, EmailValidatior라는 것을 통해 입력되는 문자열이 이메일 형식인지 자동체크, 이메일 형식이 아닐경우 저장과정에서 오류 발생.
+>> models.FileField()           # 파일을 저장할 수 있는 타입, 실질적으로 저장되는 값은 저장되는 파일의 이름이며, 해당 파일은 upload_to라는 옵션에 지정되는 위치에 저장.
+>> models.TextField()           # CharField와 비슷하게 문자열을 저장하는 데이터 타입, charField보다 더 글자수 제한이 더 크다. 많은 양의 텍스트 저장 가능.
+>> models.IntegerField()        # 숫자를 저장하는 타입. 유효범위 -2147483648 ~ 2147483647, 게시글의 조회수, 추천수 등을 저장하는데 활용.
+>> BooleanField                 # true | false 를 저장하는 데이터타입
+>
+> 자세한 데이터 타입은 아래의 링크를 확인
+> [참조문서]: https://docs.djangoproject.com/en/3.0/ref/models/fields/
 
 # DB
 > DB생성
