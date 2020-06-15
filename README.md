@@ -193,3 +193,47 @@
 > {% endif %}                           # if문 종료 태그
 > ```
 > 이 밖에도 다양한 커스텀 태그를 작성할 수 있다.   
+
+# 값 수정
+> 앞서 DB를 활용하기 위해서 Model을 작성하였다. Django의 Model에는 object 객체가 제공(model.objects)되는데    
+> 이를 통해 해당 모델 클래스의 DB데이터를 추가, 조회, 수정, 삭제(CRUD)을 간편히 수행할 수 있다. ex) 앞서 사용한 new_Model.save()가 추가(C)의 기능이다.
+> 
+> QuerySet은 Django의 SQL을 생성해주는 인터페이스로 별도의 SQL작성과정 없이    
+> DB로 부터 데이터를 가져오고 추가, 수정, 삭제가 가능하다.    
+> ```
+> new_Model.Objects.all     # SELECT * FROM new_Model… 와 같은 SQL문 생성
+> new_Model.Objects.create  # INSERT INTO new_Model VALUES(…) 와 같은 SQL문 생성
+>
+> # and 조건(filter)
+> queryset = 모델클래스명.objects.all()         # filter를 통해 조건에 맞는 데이터 조회
+> queryset = queryset.filter(조건필드1=조건값1, 조건필드2=조건값2) # and 조건
+> queryset = queryset.filter(조건필드3=조건값3)
+>
+> # 제외조건 (exclude)
+> # 제목에 '테스트'를 포함한 record를 제외한 전체
+> Post.objects.all().exclude(title__icontains='test')
+> 
+> # 제목에 1을 포함하지만 3으로 끝나지 않는 record
+> Post.objects.filter(title__icontains='1').exclude(title__endswith='3')
+>
+> # OR 조건 (filter)
+> # Complex lookups with Q objects : or 조건을 사용하기 위해서는 Q 객체 import가 필요하다.   
+> from django.db.models import Q
+> 
+> 모델클래스명.objects.all().filter(Q(조건필드1=조건값1) | Q(조건필드2=조건값2)) # or 조건
+> 모델클래스명.objects.all().filter(Q(조건필드1=조건값1) & Q(조건필드2=조건값2)) # and 조건
+>
+> # 정렬
+> queryset = queryset.order_by('field1') # 지정 필드 오름차순 요청
+> queryset = queryset.order_by('-field1') # 지정 필드 내림차순 요청
+> queryset = queryset.order_by('field2', 'field3') # 1차기준, 2차기준
+>
+> # 범위 조건 (슬라이싱)
+> queryset = queryset[:10] # 현재 queryset에서 처음10개만 가져오는 조건을 추가한 queryset
+> queryset = queryset[10:20] # 현재 queryset에서 처음10번째부터 20번째까지를 가져오는 조건을 추가한 queryset
+> 
+> # 리스트 슬라이싱과 거의 유사하나, 역순 슬라이싱은 지원하지 않음
+> queryset = queryset[-10:] # AssertionError 예외 발생
+> 
+> # 이때는 먼저 특정 필드 기준으로 내림차순 정렬을 먼저 수행한 뒤, 슬라이싱
+> queryset = queryset.order_by('-id')[:10]
