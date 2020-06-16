@@ -33,6 +33,14 @@ def loginDo(request):
 
     sql_result = user_info.objects.filter(id=input_id, pwd=input_pwd)
     if not sql_result: print("fail login")
-    else: print("success login")
+    else: 
+        print("success login")
+        request.session['USR_ID'] = input_id
+
+    return HttpResponseRedirect(reverse('index'))
+
+def logout(request):
+    request.session['USR_ID'] = None
+    request.session.modified=True
 
     return HttpResponseRedirect(reverse('index'))

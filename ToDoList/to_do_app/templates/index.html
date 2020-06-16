@@ -6,10 +6,10 @@
     </head>
     <body>
         <h1>Hello 
-            {% if not usr_id %} 
+            {% if not request.session.USR_ID %} 
                 Guest 
             {% else %} 
-                {{ usr_id }}
+                {{ request.session.USR_ID }}
             {% endif %}
         </h1>
         <button type="button" onclick="location.href='user_app/sign'">회원가입</button>
@@ -19,6 +19,7 @@
                 {% csrf_token %}
                 <table>
                     <tr>
+                        {% if not request.session.USR_ID %}
                         <td>
                             ID
                         </td>
@@ -34,18 +35,40 @@
                         <td>
                             <button type="submit">로그인</button>
                         </td>
+                        {% else %}
+                        <td>
+                            <button type="button" onclick="location.href='user_app/logout'">로그아웃</button>
+                        </td>
+                        {% endif %}
                     </tr>
                 </table>
             </form>
         </div>
-
+        {% if request.session.USR_ID %}
         <div class="messageDiv">
-            <form action="createToDo" method="POST">{% csrf_token %}
+            <form action="saveToDo" method="POST">{% csrf_token %}
                 <input id="toDoContent" name="toDoContent" type="text" size="50" placeholder="메모할 내용을 적어주세요." />
                 <span class="linput-group-btn">
                     <button type="submit">메모하기!</button>
                 </span>
             </form> 
         </div>
+        {% endif %}
+        {% if contents %}
+            {% for toDo in contents %}
+                <h1>{{ toDo.content }}
+                    {% if not toDo.is_done %}
+                        <button type="button" onclick="location.href='isDone?toDo_id={{ toDo.id }}'">
+                            작업 완료
+                        </button>
+                    {% else %}
+                        <button type="button">삭제</button>
+                    {% endif %}
+                </h1>
+            {% endfor %}
+        {% else %}
+            {{ contents }}
+            <h1>toDo is None</h1>
+        {% endif %}
     </body>
 </html>

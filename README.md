@@ -120,7 +120,7 @@
 > 자세한 데이터 타입은 아래의 링크를 확인    
 > [참조문서]: ( https://docs.djangoproject.com/en/3.0/ref/models/fields/ )
 
-# DB
+## DB
 > DB생성
 >> Model에 작성한 내용대로 DB에 적용하기 위한 작업1   
 >> ```
@@ -143,7 +143,7 @@
 >> Model에 의해 생성된 테이블명은 규칙을 가진다.   
 >> 프로젝트명_모델명  ex) to_do_app_user 로 생성이 된다.   
 
-# 값 전달
+## 값 전달
 > POST | GET 방식   
 > ```
 > <form action="your_action_path" method="GET || POST"> {% csrf_token %}
@@ -171,7 +171,7 @@
 >    return render(request, 'your.html', context) # render시 이동할 템플릿과 함께 전달(your_var로 참조 가능)
 > ```
 
-# 값 저장
+## 값 저장
 > form에서 전달한 값을 받는법을 확인하였다.   
 > 그렇다면 확인한 값을 DB에 저장하는 방법은??   
 > 앞서 작성한 Model을 활용한다.   
@@ -187,7 +187,7 @@
 >    return render(request, 'your.html')
 > ```
 
-# 값 출력
+## 값 출력
 > 템플릿 태그
 > Html을 통한 페이지 내용 작성시 각기 다른 값을 출력하기 위한 태그    
 > ```
@@ -207,7 +207,7 @@
 > ```
 > 이 밖에도 다양한 커스텀 태그를 작성할 수 있다.   
 
-# 값 수정
+## 값 수정
 > 앞서 DB를 활용하기 위해서 Model을 작성하였다. Django의 Model에는 object 객체가 제공(model.objects)되는데    
 > 이를 통해 해당 모델 클래스의 DB데이터를 추가, 조회, 수정, 삭제(CRUD)을 간편히 수행할 수 있다. ex) 앞서 사용한 new_Model.save()가 추가(C)의 기능이다.
 > 
@@ -250,3 +250,49 @@
 > 
 > # 이때는 먼저 특정 필드 기준으로 내림차순 정렬을 먼저 수행한 뒤, 슬라이싱
 > queryset = queryset.order_by('-id')[:10]
+
+## 세션
+> 일정 시간동안 같은 사용자(클라이언트)로 부터 들어오는 일련의 상태를 유지시키는 기술.   
+> 쿠키와의 차이점    
+> 저장 공간이 다르다. (서버측 저장 = 세션 // 클라이언트측 저장 = 쿠키)
+>
+> 설정
+>> ```
+>> settings.py > MIDDLEWARE 부분
+>> MIDDLEWARE = [
+>>    """"""
+>>    'django.contrib.sessions.middleware.SessionMiddleware' # 추가 구문
+>> ]
+>>
+>>
+>> settings.py > INSTALLED_APPS 부분
+>> INSTALLED_APPS = [
+>>    """"""
+>>    'django.contrib.sessions',    # 기본값으로 되어있으나 없으면 추가한다.
+>>    """"""
+>> ]
+>>
+>> settings.py > TEMPLATES 부분
+>> TEMPLATES = [
+>>    {
+>>        """"""
+>>            'context_processors': [
+>>                'django.template.context_processors.request', # 기본값으로 되어있으나 없으면 추가한다.
+>>                """"""
+>>            ],
+>>        },
+>>    },
+>> ]
+>> '''
+>
+> 사용
+>> ```
+>> # 저장
+>> def do_login(request):
+>>  """"""
+>>  request.session['SSEISSION_VAR_NAME'] = local_var
+>>
+>>
+>> # Template에서 사용
+>> {{ request.session.SESSION_VAR_NAME }}   # 출력
+>> {% if request.session.SESSION_VAR_NAME %} # 사용
