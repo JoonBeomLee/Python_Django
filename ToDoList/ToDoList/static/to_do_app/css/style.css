@@ -1,0 +1,25 @@
+.content{
+    height: 75%;
+}
+.messageDiv{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.custom-btn{
+    font-size: 10px;
+}
+.panel-footer{
+    height:10%;
+    color:gray;
+}
+
+.list-group-item:first-child {
+    position: relative;
+    display: block;
+    padding: 12.5px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}

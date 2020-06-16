@@ -18,7 +18,7 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 def saveToDo(request):
-    toDo_text = request.POST['toDoContent']
+    toDo_text = request.POST['todoContent']
     usr_id = request.session['USR_ID']
     new_toDo = to_do(usr_id=usr_id, content=toDo_text)
     new_toDo.save() 

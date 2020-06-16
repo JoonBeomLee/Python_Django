@@ -1,79 +1,94 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Django-JoonB</title>
         <meta charset="utf-8"/>
+        {% load static %}
+        <!-- Boot strap -->
+        <!-- 합쳐지고 최소화된 최신 CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <!-- 부가적인 테마 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'to_do_app/css/style.css' %}">
+        <style>
+        </style>
+        <title>Django-JoonB</title>
     </head>
     <body>
-        <h1>Hello 
-            {% if not request.session.USR_ID %} 
-                Guest 
-            {% else %} 
-                {{ request.session.USR_ID }}
+        <div class="container">
+            <div class="header">
+                <div class="page-header">
+                    <h1>To-do List <small>with Django</small></h1>
+                </div>
+            </div>
+        <div class="content">
+            <h2>Hello 
+                {% if not request.session.USR_ID %} 
+                    Guest 
+                {% else %} 
+                    {{ request.session.USR_ID }}
+                {% endif %}
+                <button type="button" class="btn btn-default" onclick="location.href='user_app/sign'">회원가입</button>
+                {% if request.session.USR_ID %}
+                <button type="button" class="btn btn-default" onclick="location.href='user_app/logout'">로그아웃</button>
+                {% endif %}
+            </h2>
+            {% if not request.session.USR_ID %}
+            <div class=loginForm>
+                <form action="user_app/loginDo" method="POST">
+                    {% csrf_token %}
+                    <table class="messageDiv">
+                        <tr>
+                            <td>ID&ensp;</td>
+                            <td><input type="text" name="login_id" required/>&ensp;</td>
+                            <td>PWD&ensp;</td>
+                            <td><input type="password" name="login_pwd" required />&ensp;</td>
+                            <td><button type="submit" class="btn btn-default">로그인</button></td>
+                        </tr>
+                    </table>
+                </form>
+                <hr/>
+            </div>
             {% endif %}
-        </h1>
-        <button type="button" onclick="location.href='user_app/sign'">회원가입</button>
+            {% if request.session.USR_ID %}
+            <div class="messageDiv">
+                <form action="saveToDo" method="POST">{% csrf_token %}
+                    <div class="input-group">
+                        <input name="todoContent" type="text" class="form-control" placeholder="메모할 내용을 적어주세요">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">메모하기!</button>
+                        </span>
+                    </div>
+                </form>
+            </div><hr />
+            {% endif %}
 
-        <div class=loginForm>
-            <form action="user_app/loginDo" method="POST">
-                {% csrf_token %}
-                <table>
-                    <tr>
-                        {% if not request.session.USR_ID %}
-                        <td>
-                            ID
-                        </td>
-                        <td>
-                            <input type="text" name="login_id" required/>
-                        </td>
-                        <td>
-                            PWD
-                        </td>
-                        <td>
-                            <input type="password" name="login_pwd" required />
-                        </td>
-                        <td>
-                            <button type="submit">로그인</button>
-                        </td>
-                        {% else %}
-                        <td>
-                            <button type="button" onclick="location.href='user_app/logout'">로그아웃</button>
-                        </td>
-                        {% endif %}
-                    </tr>
-                </table>
-            </form>
+            {% if contents %}
+            <div class="toDoDiv">
+                <ul class="list-group">
+                {% for toDo in contents %}
+                    <div class="input-group" name='todo1'>
+                        <li class="list-group-item">{{ toDo.content }}</li>
+                        <span class="input-group-addon">
+                            {% if not toDo.is_done %}
+                                <button type="button" class="custom-btn btn btn-danger" onclick="location.href='isDone?toDo_id={{ toDo.id }}'">작업 완료</button>
+                            {% else %}
+                                <button type="button" class="custom-btn btn btn-danger" onclick="location.href='delToDo?toDo_id={{ toDo.id }}'">삭제</button>
+                                <button type="button" class="custom-btn btn btn-danger" onclick="location.href='chnDone?toDo_id={{ toDo.id }}'">취소</button>
+                            {% endif %}
+                        </span>
+                    </div><br />
+                {% endfor %}
+                </ul>
+            </div>
+            {% else %}
+                <h2>toDo is None</h2>
+            {% endif %}
+            <div class="panel-footer">
+                실전예제로 배우는 Django. Project1-TodoList
+            </div>
         </div>
-        {% if request.session.USR_ID %}
-        <div class="messageDiv">
-            <form action="saveToDo" method="POST">{% csrf_token %}
-                <input id="toDoContent" name="toDoContent" type="text" size="50" placeholder="메모할 내용을 적어주세요." />
-                <span class="linput-group-btn">
-                    <button type="submit">메모하기!</button>
-                </span>
-            </form> 
-        </div>
-        {% endif %}
-        {% if contents %}
-            {% for toDo in contents %}
-                <h1>{{ toDo.content }}
-                    {% if not toDo.is_done %}
-                        <button type="button" onclick="location.href='isDone?toDo_id={{ toDo.id }}'">
-                            작업 완료
-                        </button>
-                    {% else %}
-                        <button type="button" onclick="location.href='delToDo?toDo_id={{ toDo.id }}'">
-                            삭제
-                        </button>
-                        <button type="button" onclick="location.href='chnDone?toDo_id={{ toDo.id }}'">
-                            취소
-                        </button>
-                    {% endif %}
-                </h1>
-            {% endfor %}
-        {% else %}
-            {{ contents }}
-            <h1>toDo is None</h1>
-        {% endif %}
     </body>
 </html>
