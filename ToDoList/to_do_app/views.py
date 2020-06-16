@@ -27,6 +27,25 @@ def saveToDo(request):
 
 def toDoIsDone(request):
     done_id = request.GET['toDo_id']
-    to_do.objects.filter(id=done_id)
+    done_to_do = to_do.objects.filter(id=done_id)[0]
+
+    done_to_do.is_done = True
+    done_to_do.save()
+
+    return HttpResponseRedirect(reverse('index'))
+
+def chnDone(request):
+    chn_id = request.GET['toDo_id']
+    chn_to_do = to_do.objects.filter(id=chn_id)[0]
+
+    chn_to_do.is_done = False
+    chn_to_do.save()
+
+    return HttpResponseRedirect(reverse('index'))
+
+def delToDo(request):
+    del_id = request.GET['toDo_id']
+    del_to_do = to_do.objects.get(id=del_id)
+    del_to_do.delete()
 
     return HttpResponseRedirect(reverse('index'))

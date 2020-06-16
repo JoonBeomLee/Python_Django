@@ -62,7 +62,12 @@
                             작업 완료
                         </button>
                     {% else %}
-                        <button type="button">삭제</button>
+                        <button type="button" onclick="location.href='delToDo?toDo_id={{ toDo.id }}'">
+                            삭제
+                        </button>
+                        <button type="button" onclick="location.href='chnDone?toDo_id={{ toDo.id }}'">
+                            취소
+                        </button>
                     {% endif %}
                 </h1>
             {% endfor %}
