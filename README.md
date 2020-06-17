@@ -296,3 +296,24 @@
 >> # Template에서 사용
 >> {{ request.session.SESSION_VAR_NAME }}   # 출력
 >> {% if request.session.SESSION_VAR_NAME %} # 사용
+
+## static 파일 
+> 서버에서 생성 된 HTML을 제외한, 웹 어플리케이션은 일반적으로 전체 웹 페이지를 렌더링하는 데    
+> 필요한 추가 파일들이 존재한다. 예시로는 디자인을 담당하는 CSS파일, 프론트 기능을 담당하는 JS파일,    
+> 디자인을 위한 이미지 파일 등이 있다. 이러한 파일들을 Django에서 'static 파일' (정적 파일) 이라고 한다.   
+> 사용을 위해서는 몇가지 설정이 필요하다.
+> 
+> ```
+> # 설정
+> your_project > settings.py
+> STATICFILES_DIRS = (
+>    os.path.join(BASE_DIR, 'static'), # 기본값
+>    os.path.join(BASE_DIR, 'YOUR_PATH'), # add your static file path
+> )
+> 
+> # 사용
+> your_app > templates > your_html.html
+> {% load static %}
+> <link rel="stylesheet" type="text/css" href="{% static 'YOUR_PATH/style.css' %}">
+> <script type="text/javascript" src="{% static 'YOUR_PATH/index.js'"}></script>
+> ```
