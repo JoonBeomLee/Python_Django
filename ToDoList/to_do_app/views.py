@@ -7,8 +7,12 @@ from .models import *
 
 # Create your views here.
 def index(request):
-    login_id = request.session['USR_ID']
-    context = None
+    try:
+        # 첫방문
+        context = None
+        login_id = request.session['USR_ID']
+    except:    
+        login_id = None
     # login session 유효시
     if login_id:
         toDo_list = to_do.objects.filter(usr_id=login_id).order_by('id').values('content', 'id', 'is_done')

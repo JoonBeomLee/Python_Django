@@ -22,29 +22,31 @@
                     <h1>회원 가입</h1>
                 </div>
             </div>
-            <div>
-                <form action="signDo" method="POST">
-                    {% csrf_token %}
-                    <table>
+            <div class="content">
+                <form action="signDo" method="POST">{% csrf_token %}
+                    <table class="messageDiv">
                         <tr>
-                            <td>회원 ID&ensp;</td>
+                            <td>회원 ID&emsp;&emsp;</td>
                             <td><input type="text" name="sign_id" requried/></td>
                         </tr>
                         <tr>
-                            <td>비밀번호&ensp;</td>
-                            <td><input type="password" name="sign_pwd" requried/></td>
+                            <td>비밀번호&emsp;&emsp;</td>
+                            <td><input type="text" name="sign_pwd" requried/></td>
                         </tr>
                         <tr>
-                            <td>이름</td>
+                            <td>회원이름&emsp;&emsp;</td>
                             <td><input type="text" name="sign_name" requried/></td>
                         </tr>
                         <tr>
-                            <td>이메일</td>
+                            <td>이메일&emsp;&emsp;</td>
                             <td><input type="email" name="sign_email" requried/></td>
                         </tr>
                         <tr>
-                            <td><button type="submit">확인</button></td>
-                            <td><button type="button" onclick="location.href='/'">뒤로가기</button></td>
+                            <td></td>
+                            <td class="table_button">
+                                <button type="submit" class="btn btn-default">확인</button>
+                                <button type="button" class="btn btn-default" onclick="location.href='/'">뒤로가기</button>
+                            </td> 
                         </tr>
                     </table>
                 </form>
