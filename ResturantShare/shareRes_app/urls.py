@@ -6,6 +6,8 @@ urlpatterns =[
     # <str:rst_id> 자리의 값을 지정한 형태로 페이지로 전달
     path('restaurantDetail/', views.rstDetail, name='rstDetail'),
     path('restaurantDetail/updateRes', views.rstUpdate, name='rstUpdate'),
+    path('restaurantDetail/updateResDo', views.rstUpdateDo, name='rstUpdateDo'),
+    path('restaurantDetail/delete', views.rstDelete, name='rstDelete'),
     path('restaurantCreate/', views.rstCreate, name='rstCreate'),
     path('restaurantCreate/addRes', views.rstCreateAdd, name='addRes'),
     path('categoryCreate/', views.ctgCreate, name='ctgCreate'),

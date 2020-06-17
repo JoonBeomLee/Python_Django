@@ -90,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_mysql_restaurantShare',
-        'USER': 'root',
-        'PASSWORD': 'dblab2316',
+        'USER': 'python_django',
+        'PASSWORD': 'django_mysql007',
         'HOST': 'localhost',
         'PORT': '3306',
     },

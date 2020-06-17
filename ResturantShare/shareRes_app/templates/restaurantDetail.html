@@ -52,9 +52,10 @@
                 </div>
                 <a href ="/" class="resAddBtn btn btn-info" role="button" style="float:left">홈으로</a>
                 <div style="float:right;">
-                    <a href ="./updateRes?rst_id={{restaurant.id}}" class="resAddBtn btn btn-danger" role="button">수정하기</a>&ensp;
+                    <a href ="./updateRes?rst_id={{restaurant.id}}" class="resAddBtn btn btn-danger" role="button">수정하기</a>
+                    &ensp;
                     <form action="./delete" method="POST" style="float:right">{% csrf_token %}
-                        <input type="hidden" id="resId" name="resId" value="{{restaurant.id}}"/>
+                        <input type="hidden" id="rst_id" name="rst_id" value="{{restaurant.id}}"/>
                         <input type="submit" class="resAddBtn btn btn-danger" value="삭제하기">
                     </form>
                 </div>

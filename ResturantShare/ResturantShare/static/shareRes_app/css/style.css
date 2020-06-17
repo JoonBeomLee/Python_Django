@@ -57,6 +57,11 @@ a{
     color: #337ab7;
     background-color: #fff;
 }
+.resCategory{
+    width:60%;
+    border-radius: 2px;
+}
+
 .category{
     position: relative;
     display: block;
@@ -122,6 +127,9 @@ ul.restaurantList li:hover{
     resize: none;
 }
 
+select[size]{
+    height: 28px;
+}
 
 .panel-footer{
     margin-top: 50px;

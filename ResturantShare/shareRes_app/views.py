@@ -34,9 +34,31 @@ def rstUpdate(request):
     }
     return render(request, 'restaurantUpdate.html', context)
 
+def rstDelete(request):
+    rst_id = request.POST['rst_id']
+    del_rst = restaurant.objects.get(id=rst_id)
+    del_rst.delete()
+
+    return HttpResponseRedirect(reverse('index'))
+
+def rstUpdateDo(request):
+    rst_id = request.POST['rstId']
+    edit = restaurant.objects.get(id=rst_id)
+
+    edit.category = category.objects.get(id=request.POST['resCategory'])
+    edit.rst_name = request.POST['resTitle']
+    edit.rst_link = request.POST['resLink']
+    edit.rst_content = request.POST['resContent']
+    edit.rst_keyword = request.POST['resLoc']
+
+    edit.save()
+    re_url = "/restaurantDetail/?rst_id="+rst_id
+
+    return HttpResponseRedirect(re_url)
+
 def rstCreate(request):
     ctgs = category.objects.all()
-
+    
     context = {
         'categories':ctgs,
     }

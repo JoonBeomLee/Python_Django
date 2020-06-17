@@ -30,11 +30,19 @@
         </div>
         <div class="content">
             <div class="inputDiv">
-                <form action="./addRes" name="editForm" method="POST" onsubmit="return checkFrom();">{% csrf_token %}
+                <form action="./updateResDo" name="editForm" method="POST" onsubmit="return checkFrom();">{% csrf_token %}
                     <input id="resCategory" name="rstId" type="text" class="form-control" style="display:none" value="{{restaurant.id}}">
                     <div class="input-group">
                         <span class="input-group-addon" id="sizing-addon2">카테고리</span>
-                        <input id="resCategory" name="resCategory" type="text" class="form-control" value="{{restaurant.category.category_name}}">
+                        <select id="resCategory" name="resCategory" class="resCategory" size="1" required autofocus>
+                            {% for category in categories %}
+                            {% if category.id == restaurant.category.id %}
+                                <option value="{{category.id}}" selected>{{category.category_name}}</option>
+                            {% else %}
+                                <option value="{{category.id}}">{{category.category_name}}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>  
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon" id="sizing-addon2">맛집 이름</span>
@@ -55,7 +63,7 @@
                 <form>
                     <a href ="/" class="resAddBtn btn btn-info" role="button" style="float:left">홈으로</a>
                 <div style="float:right;">
-                    <input type="button" onclick="editForm.submit" class="resAddBtn btn btn-danger" value="수정하기" />&ensp;
+                    <input type="button" onclick="editForm.submit()" class="resAddBtn btn btn-danger" value="수정하기" />&ensp;
                     <form action="./delete" method="POST" style="float:right">{% csrf_token %}
                         <input type="hidden" id="resId" name="resId" value="{{restaurant.id}}"/>
                         <input type="submit" class="resAddBtn btn btn-danger" value="삭제하기">
