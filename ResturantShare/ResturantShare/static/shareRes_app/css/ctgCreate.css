@@ -1,0 +1,39 @@
+.container{
+    margin-top: 20px;
+}
+.jumbotron{
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.content{
+    min-height: 60%;
+    margin: auto;
+}
+.row{
+    margin:0;
+    padding:0;
+}
+.inputDiv{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+}
+.input-group-addon{
+    width:700px;
+}
+.resCategory{
+    width:300px;
+    border-radius: 10px;
+}
+.input-group{
+    margin:10px;
+    width: 730px;
+}
+.resAddBtn{
+    float:right;
+}
+
+.panel-footer{
+    margin-top: 50px;
+    height: 10%;
+}

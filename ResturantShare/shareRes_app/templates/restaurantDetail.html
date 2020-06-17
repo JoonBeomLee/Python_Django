@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <!-- Boot strap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'shareRes_app/css/style.css' %}">
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="{% static 'shareRes_app/js/category.js' %}"></script>
+    <title>맛집 추가하기</title>
+    <script>
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="jumbotron">
+                <h1>맛집 상세보기</h1>
+                <p>made by Django</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="inputDiv">
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">카테고리</span>
+                    <input id="resCategory" name="resCategory" type="text" class="form-control" disabled value="{{restaurant.category.category_name}}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">맛집 이름</span>
+                    <input id="resTitle" name="resTitle" type="text" class="form-control" disabled value="{{restaurant.rst_name}}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">관련 링크</span>
+                    <input id="resLink" name="resLink" type="text" class="form-control" disabled value="{{restaurant.rst_link}}">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">상세 내용</span>
+                    <textarea id="resContent" name="resContent" cols="90" rows="10" disabled value="">{{restaurant.rst_content}}</textarea>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">장소 키워드</span>
+                    <input id="resLoc" name="resLoc" type="text" class="form-control" disabled value="{{restaurant.rst_keyword}}">
+                </div>
+                <a href ="/" class="resAddBtn btn btn-info" role="button" style="float:left">홈으로</a>
+                <div style="float:right;">
+                    <a href ="./updateRes?rst_id={{restaurant.id}}" class="resAddBtn btn btn-danger" role="button">수정하기</a>&ensp;
+                    <form action="./delete" method="POST" style="float:right">{% csrf_token %}
+                        <input type="hidden" id="resId" name="resId" value="{{restaurant.id}}"/>
+                        <input type="submit" class="resAddBtn btn btn-danger" value="삭제하기">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            JoonB Django_Project
+        </div>
+    </div>
+</body>
+</html>

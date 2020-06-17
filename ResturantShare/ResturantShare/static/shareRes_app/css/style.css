@@ -1,0 +1,129 @@
+.container{
+    margin-top: 20px;
+}
+.jumbotron{
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.content{
+    min-height: 60%;
+    margin: auto;
+}
+.row{
+    margin:0;
+    padding:0;
+}
+.subTitle{
+    font-size:17px;
+}
+.addBtn{
+    width: 400px;
+    margin: 10px;
+}
+.restaurantInfoDiv{
+    margin-left:30px;
+    float:left;
+}
+.infoHeaderDiv{
+    border-bottom: 1px solid #eee;
+    float:left;
+}
+.infoHeaderDiv h1{
+    margin:0;
+}
+.categoryAddDiv{
+    float:left;
+    margin-left:25px;
+}
+.categoryAddBtn{
+    height: 40px;
+    width: 40px;
+    font-size:20px;
+    padding:3px;
+
+}
+.restaurantListDiv{
+    margin-top: 25px;
+    width: 500px;
+}
+a{
+    text-decoration: none;
+}
+.active{
+    color: #fff;
+    background-color: #337ab7;
+}
+.deactive{
+    color: #337ab7;
+    background-color: #fff;
+}
+.category{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.deactive:hover{
+    background-color: #D3D3D3;
+}
+.restaurantList{
+    display:none;
+}
+ul.restaurantList li{
+    background-color:white;
+}
+ul.restaurantList li:hover{
+    background-color:#D3D3D3;
+    cursor: pointer;
+}
+.input-group{
+    margin: 10px;
+}
+
+.emailDiv{
+    float:left;
+    margin-left:25px;
+}
+.emailContentGroup{
+    margin:5px;
+}
+.emailHeaderDiv h1{
+    margin:0;
+}
+.sendBtn{
+    width: 400px;
+    margin: 10px;
+}
+.emailContentGroup h4{
+    font-weight: bold;
+    margin:5px;
+}
+.emailContentHeader{
+    margin: 10px;
+}
+.emailContent{
+    margin: 10px;
+
+}
+.inputReceiver{
+    width: 350px;
+}
+.inputReceiverSub{
+    font-size: 12px;
+    font-weight: 100;
+}
+.inputTitle{
+    width: 350px;
+}
+.inputContent{
+    resize: none;
+}
+
+
+.panel-footer{
+    margin-top: 50px;
+    height: 10%;
+}

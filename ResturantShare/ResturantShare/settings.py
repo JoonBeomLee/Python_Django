@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # add my apps
     'shareRes_app',
     'sendEmail_app',
 ]
@@ -75,13 +76,7 @@ WSGI_APPLICATION = 'ResturantShare.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
+# DEFUALT DATABASE SETTINGS
 '''
 DATABASES = {
     'default': {
@@ -94,7 +89,7 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_mysql_resturantShare',
+        'NAME': 'django_mysql_restaurantShare',
         'USER': 'root',
         'PASSWORD': 'dblab2316',
         'HOST': 'localhost',
@@ -143,5 +138,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     # add static file 적용
-    os.path.join(BASE_DIR, 'ResutrantShare', 'static'),
+    os.path.join(BASE_DIR, 'ResturantShare', 'static'),
 )

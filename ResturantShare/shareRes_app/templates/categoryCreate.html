@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <!-- Boot strap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'shareRes_app/css/ctgCreate.css' %}">
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="{% static 'shareRes_app/js/ctgCreate.js' %}"></script>
+    <title>맛집 추가하기</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="jumbotron">
+                <h1>카테고리 추가하기</h1>
+                <p>made by Django</p>
+            </div>
+        </div>
+        <div class="content">
+            
+                <div class="inputDiv">
+                    {% for category in categories %}
+                    <form action="./delete" method="POST">{% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-addon" id="" style="border:1px solid #ccc; border-radius: 4px;">{{category.category_name}}</span>
+                            <input type="hidden" name="categoryId" id="categoryId" value="{{category.id}}"/>
+                            <input type="submit" class="resAddBtn btn btn-danger" role="button" value="삭제"/>
+                        </div>
+                    </form>
+                    {% endfor %}
+
+                    <form action="./add" method="POST" onsubmit="return categoryAddCheckFrom();">{% csrf_token %}
+                        <div class="input-group">
+                            <input type="submit" class="resAddBtn btn btn-success" role="button" value="추가"/>
+                            <input id="categoryName" name="categoryName" type="text" class="form-control" placeholder="추가할 카테고리명을 입력하세요." required style="width:650px; float:right; border-radius:4px;">
+                        </div>
+                    </form>
+                    <a href ="/" class="resAddBtn btn btn-info" role="button">홈으로</a>
+                </div>
+            
+        </div>
+        <div class="panel-footer">
+            JoonB Django_Project
+        </div>
+    </div>
+</body>
+</html>
