@@ -1,0 +1,22 @@
+.container{
+    margin-top: 20px;
+}
+.jumbotron{
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.content{
+    min-height: 60%;
+    margin: auto;
+    text-align: center;
+}
+.panel-footer{
+    margin-top: 50px;
+    height: 10%;
+}
+
+.resultDiv{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+}

@@ -35,16 +35,17 @@ def sendEmail(request):
         SMTP_ID, SMTP_PWD = SMTP_INFO()
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.login(SMTP_ID, SMTP_PWD)
-    except:
-        print("SMTP ERROR")
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = title
+        msg['From'] = SMTP_ID
+        msg['To'] = receiver
+        mail_html = MIMEText(mail_html, 'html')
+        msg.attach(mail_html)
+        server.sendmail(msg['From'], msg['To'].split(','), msg.as_string())
+        server.quit()
 
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = title
-    msg['From'] = SMTP_ID
-    msg['To'] = receiver
-    mail_html = MIMEText(mail_html, 'html')
-    msg.attach(mail_html)
-    server.sendmail(msg['From'], msg['To'].split(','), msg.as_string())
-    server.quit()
-    
-    return HttpResponseRedirect(reverse('index'))
+        # success
+        return render(request, 'sendSuccess.html')
+    except:
+        # fail
+        return render(request, 'sendFail.html')
