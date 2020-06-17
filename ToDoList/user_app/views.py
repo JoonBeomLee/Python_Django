@@ -5,7 +5,7 @@ from .models import *
 
 # Create your views here.
 def sign(request):
-    return render(request, 'sign.html')
+    return render(request, 'sign_copy.html')
 
 def signDo(request):
     usr_id = request.POST['sign_id'] 

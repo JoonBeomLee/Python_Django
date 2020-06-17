@@ -12,9 +12,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="{% static 'to_do_app/css/style.css' %}">
-        <!--<link rel="stylesheet" type="text/css" href='src/css/style.css'>-->
-        <style>
-        </style>
         <title>Django-JoonB</title>
     </head>
     <body>
@@ -50,7 +47,6 @@
                         </tr>
                     </table>
                 </form>
-                <hr/>
             </div>
             {% endif %}
             {% if request.session.USR_ID %}
@@ -85,7 +81,11 @@
                 </ul>
             </div>
             {% else %}
-                <h2>toDo is None</h2>
+                {% if not request.session.USR_ID %}
+                    <h3>ToDo를 입력하시려면 로그인을 해주세요</h3>
+                {% else %}
+                    <h3>아직 리스트가 없습니다. 등록해주세요</h3>
+                {% endif %}
             {% endif %}
             <div class="panel-footer">
                 실전예제로 배우는 Django. Project1-TodoList
