@@ -317,3 +317,24 @@
 > <link rel="stylesheet" type="text/css" href="{% static 'YOUR_PATH/style.css' %}">
 > <script type="text/javascript" src="{% static 'YOUR_PATH/index.js'"}></script>
 > ```
+
+## media 파일
+> 위의 static 파일과는 반대로 파일 현황이 동적인 것들을 말한다. 예를 들어 사용자가   
+> 웹에서 직접 업로드하는 파일들을 말한다. 이 파일들은 수정, 업데이트될 수 있는 파일 들이다.   
+> static파일과 마찬가지로 사용에 있어서 몇가지 설정이 필요하다.
+>
+> ```
+> # 설정
+> your_project > settings.py
+> MEDIA_URL = '/media/'
+> MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # add your media file path
+> ```
+>    
+> 위 설정으로 media file들이 어디에 업로드되는지 설정 했다. 그렇다면 파일을 참조하기 위해서는   
+> 파일들의 정확한 위치를 알아야 하므로 경로를 저장하는 Model의 추가작업도 요구된다.   
+> ```
+> # your_app > models.py
+> class uploadFile(models.Model):
+>   # 파일 경로를 저장
+>   # upload_to옵션은 mediaFile 경로 이후 저장될 위치를 작성한다.
+>   user_upload_file = models.FileField(upload_to='your_upload_path/%Y%m%d/')

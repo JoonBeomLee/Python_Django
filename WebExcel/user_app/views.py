@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 # 이메일 인증 후 변경 위함
 from user_app.models import *
+
+# 회원 가입시 PWD 암호화
+import hashlib
 
 # random 숫자
 from random import *
@@ -23,7 +26,14 @@ def join(request):
     email = request.POST['signUpEmail']
     password = request.POST['signUpPw']
 
-    new_user = User(usr_id=Id, pwd=password, name=name, email=email)
+    # pwd encryption
+    # hsah함수 사용 -> import hashlib 문구 필요
+    encoded_pwd = password.encode()
+    encrypted_pwd = hashlib.sha256(encoded_pwd).hexdigest()
+
+    # pwd = encrypted_pwd 
+    # hash함수 사용해 암호화된 pwd 전달
+    new_user = User(usr_id=Id, pwd=encrypted_pwd, name=name, email=email)
     new_user.save()
 
     code = randint(1000, 9999)
@@ -34,12 +44,15 @@ def join(request):
     # my sendEmail_app send function
     # parameters(receiver, verifyCode)
     # return Success:true | Fail:False
-    result = send(email, code)
-
-    if result:
+    send_result = send(email, code)
+    
+    if send_result:
         return response
     else:
-        return HttpResponse('Send Email Fail')  
+        context={
+            'message':'이메일 발송에 실패했습니다.'
+        }
+        return render(request, 'error.html', context)
     #return redirect('user_verifyCode')
 
 def verifyCode(request):
@@ -63,7 +76,7 @@ def verify(request):
         # response.set_cookie('user', user)
 
         # SESSION 방식
-        request.session['user_id'] = user.user_id
+        request.session['user_id'] = user.usr_id
         request.session['user_email'] = user.email
 
         return response
@@ -73,10 +86,15 @@ def verify(request):
 def login(request):
     inpt_id = request.POST['loginID']
     inpt_pw = request.POST['loginPW']
+
     try:
         user = User.objects.get(usr_id=inpt_id)
 
-        if(user.pwd == inpt_pw):
+        # 입력한 PW를 저장할때 암호화 했던 방식과 동일하게 암호화
+        encoded_pwd = inpt_pw.encode()
+        encrypted_pwd = hashlib.sha256(encoded_pwd).hexdigest()
+
+        if(user.pwd == encrypted_pwd):
             request.session['user_id'] = user.usr_id
             request.session['user_email'] = user.email
 

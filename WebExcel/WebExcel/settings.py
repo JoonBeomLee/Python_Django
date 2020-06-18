@@ -153,3 +153,7 @@ STATICFILES_DIRS = (
     # add static file 적용
     os.path.join(BASE_DIR, 'WebExcel', 'static'),
 )
+
+# Media files info
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'WebExcel', 'media')
