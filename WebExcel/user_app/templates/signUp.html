@@ -1,0 +1,61 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <!-- Boot strap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- tag Id 변경시 JavaScript 오류 발생 -->
+    <script type="text/javascript" src="{% static 'user_app/js/signUp.js' %}"></script>
+    <!-- class 명 변경시 디자인 오류 발생 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'user_app/css/signUp.css' %}">
+    <title>Excel Calculate</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="page-header">
+                <a href="/" class="btn btn-default btn-xs" style="margin: 10px">메인화면</a>
+                <h1>Excel Calculate <small>with Django</small>
+                    
+                </h1>
+            </div>
+        </div>
+        <div class="content">
+            <div class="userInfoInputDiv">
+                <h1> 회원가입 하기 </h1><br>
+                <form action="./signUp/join" method="POST" id="signup-form">{% csrf_token %}
+                    <div class="input-group">
+                        <span class="input-group-addon inputLabel">아이디</span>
+                        <input id="signupId" name='signUpId' type="text" class="form-control" placeholder="이름을 적어주세요." aria-describedby="basic-addon1">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon inputLabel">이름</span>
+                        <input id="signupName" name='signUpName' type="text" class="form-control" placeholder="이름을 적어주세요." aria-describedby="basic-addon1">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon inputLabel">이메일</span>
+                        <input id="signupEmail" name='signUpEmail' type="email" class="form-control" placeholder="이메일을 적어주세요." aria-describedby="basic-addon1">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon inputLabel">비밀번호</span>
+                        <input id="signupPw" name='signUpPw' type="password" class="form-control" placeholder="비밀번호를 적어주세요." aria-describedby="basic-addon1">
+                    </div><br>
+                    <div class="input-group">
+                        <span class="input-group-addon inputLabel">비밀번호 확인</span>
+                        <input id="signupPwcheck"  name='signUpPwcheck' type="password" class="form-control" placeholder="비밀번호 적어주세요." aria-describedby="basic-addon1">
+                    </div><br>
+                    <input type="button" class="btn btn-primary btn-lg" id="btn-submit" onclick="submit_click();" value="회원가입하기">
+                </form>
+            </div>
+        </div>
+        <div class="panel-footer">
+            JoonB Django_Project Web Excel Calc
+        </div>
+    </div>
+</body>
+</html>

@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from .hidden import SMTP_INFO
+
+SMTP_ID, SMTP_PWD = SMTP_INFO()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +30,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Django SMTP Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = SMTP_ID
+EMAIL_HOST_PASSWORD = SMTP_PWD
 
 # Application definition
 
@@ -41,6 +51,7 @@ INSTALLED_APPS = [
     'main_app',
     'excelCalc_app',
     'sendEmail_app',
+    'user_app',
 ]
 
 MIDDLEWARE = [
@@ -137,8 +148,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIR = (
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    # add my_static_path
-    os.path.join(BASE_DIR, 'WebExcel', 'static')
+    # add static file 적용
+    os.path.join(BASE_DIR, 'WebExcel', 'static'),
 )
