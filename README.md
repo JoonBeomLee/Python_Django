@@ -338,3 +338,4 @@
 >   # 파일 경로를 저장
 >   # upload_to옵션은 mediaFile 경로 이후 저장될 위치를 작성한다.
 >   user_upload_file = models.FileField(upload_to='your_upload_path/%Y%m%d/')
+> ```
